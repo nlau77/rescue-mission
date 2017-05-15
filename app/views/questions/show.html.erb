@@ -1,0 +1,32 @@
+<span><a href="/">Back</a></span>
+<h1><%= @question.title %></h1>
+<h3><%= @question.detail %></h3>
+
+
+<div class="">
+  <h2>Submit an answer for this question </h2>
+  <%= form_for [@question, @answer] do |f| %>
+    <%= f.text_field :response  %>
+
+    <%= f.submit "Submit Answer" %>
+  <% end %>
+</div>
+
+<div class="" border=1px>
+  <h2>Answers so far</h2>
+  <% @question.answers.each do |answer| %>
+    <% #binding.pry %>
+    <div class='<%="best_answer_#{answer.best_answer}"%>' >
+      <%= raw @markdown.render(answer.response) %> ||Posted at:<%= answer.created_at %>
+      <%= form_for :favorite, url: answer_favorites_path(answer) do |f| %>
+        <%= f.submit "Select as Best Answer" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to "Edit Question", edit_question_path(@question) %>
+</p>
+
+<%= link_to "Delete Question", @question, method: :delete, data: {confirm: "Are you sure?"} %>

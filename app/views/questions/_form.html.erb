@@ -1,0 +1,19 @@
+<div class="">
+  <%= form_for(@question) do |f| %>
+
+    <div class="row">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="row">
+      <%= f.label :detail, "Description" %>
+      <%= f.text_field :detail %>
+    </div>
+
+    <div class="row">
+      <%= f.submit "Submit Question" %>
+    </div>
+
+  <% end %>
+</div>

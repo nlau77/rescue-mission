@@ -1,0 +1,13 @@
+<h1>All the questions</h1>
+
+<table>
+  <% @questions.each do |question| %>
+  <tr>
+    <td><a href='<%=question_path(question)%>'><%=question.title%></a></td>
+    <td><%=(question.created_at)  %></td>
+  </tr>
+  <% end %>
+</table>
+
+<h1><a href="<%=new_question_path%>">Submit a Question!</a></h1>
+<!-- use a link_to here -->
